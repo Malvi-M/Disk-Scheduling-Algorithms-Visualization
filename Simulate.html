@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+    
+        <title>Disk Scheduling Algorithms Visualization</title>
+        
+        <!--CSS and Script linking-->
+        <link rel="stylesheet" href="mystyle.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
+    </head>
+
+    <body>
+        <header>
+            <nav id="header-nav" class="navbar navbar-default">
+              <div class="container">
+                <div class="navbar-header">
+        
+                  <div class="navbar-brand">
+                    <a href="#"><h1>Disk Scheduling Algorithms</h1></a>
+                  </div>
+        
+                  <button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+        
+                <div id="collapsable-nav" class="collapse navbar-collapse">
+                   <ul id="nav-list" class="nav navbar-nav navbar-right">
+                    <li>
+                      <a href="Disk.html">
+                        <i class="fa fa-file-text" aria-hidden="true"></i><br class="hidden-xs"> Wiki</a>
+                    </li>
+                    <li>
+                      <a href="Simulate.html">
+                        <i class="fa fa-area-chart" aria-hidden="true"></i><br class="hidden-xs"> Simulate</a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i><br class="hidden-xs"> About</a>
+                    </li>
+                  </ul><!-- #nav-list -->
+                </div><!-- .collapse .navbar-collapse -->
+              </div><!-- .container -->
+            </nav><!-- #header-nav -->
+        </header>
+
+        <div class="main">
+          <div class="container1">
+            <script>
+              function admSelectCheck(nameSelect)
+              {
+                  console.log(nameSelect);
+                  if(nameSelect){
+                      x3 = document.getElementById("o3").value;
+                      x4 = document.getElementById("o4").value;
+                      x5 = document.getElementById("o5").value;
+                      x6 = document.getElementById("o6").value;
+                      x7 = document.getElementById("o7").value;
+                      if(x3 == nameSelect.value || x4 == nameSelect.value || x5 == nameSelect.value || x6 == nameSelect.value || x7 == nameSelect.value){
+                          document.getElementById("admDivCheck").style.display = "block";
+                      }
+                      else{
+                          document.getElementById("admDivCheck").style.display = "none";
+                      }
+                  }
+                  else{
+                      document.getElementById("admDivCheck").style.display = "none";
+                  }
+              }
+              </script>
+
+            <div class="left transform">
+              <form name="myForm">
+                <fieldset>
+                    <div class="row2">
+                        <div class="form-group">
+                            <label for="exampleSelect1">Algorithm</label>
+                              <select class="form-control" id="algorithm" >
+                                <option id="o1" value="fcfs" >FCFS</option>
+                                <option id="o2" value="sstf" >SSTF</option>
+                                <option id="o3" value="scan" >SCAN</option>
+                                <option id="o4" value="c-scan" >C-SCAN</option>
+                                <option id="o5" value="look" >LOOK</option>
+                                <option id="o6" value="c-look" >C-LOOK</option>
+                              </select>
+                        </div>
+                        <div class="form-group" id="second" id="admDivCheck">
+                            <label for="exampleSelect1">Direction</label>
+                              <select class="form-control" id="direction">
+                                <option value="left" selected="selected">Left</option>
+                                <option value="right">Right</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="row2">
+  
+                        <div class="form-group" >
+    
+                            <label class="col-form-label" for="inputDefault">Sequence of cylinders</label>
+                            <input class="form-control" id="bitstream-input" name="bitstream" placeholder="Space-separated sequence" type="text" size="35">
+                        </div>
+                      </div>
+                    <div class="row2">
+                        <div class="form-group" >
+                            <label class="col-form-label" for="inputDefault">Initial cylinder</label>
+                            <input class="form-control" id="initial-input" name="intial"  type="text" size="5">
+                        </div>
+                        <div class="form-group" id="second" >
+                            <label class="col-form-label" for="inputDefault">Last cylinder</label>
+                            <input class="form-control" id="final-input" name="final"  type="text" size="5">
+                        </div>
+                    </div>
+                </fieldset>
+              </form>
+              <button type="submit" id="plot-button" class="btn btn-primary" onclick="getBitStreamAndPlot(event, document.getElementById('bitstream-input').value, document.getElementById('initial-input').value, document.getElementById('final-input').value, document.getElementById('algorithm').value,document.getElementById('direction').value)"><a href="#grph" style="color: white; text-decoration: none;">&nbsp;Plot&nbsp;</a></button>
+              <button type="submit" id="animate-button" class="btn btn-primary">Animate</button>
+              <button type="submit" id="cmpr-button" class="btn btn-primary" onclick="cmprPlot(event, document.getElementById('bitstream-input').value, document.getElementById('initial-input').value, document.getElementById('final-input').value, document.getElementById('direction').value)"><a href="#cmpr" style="color: white; text-decoration: none;">&nbsp;Compare&nbsp;</a></button>
+             
+            </div>
+
+            <div class="right">
+              <div id="am_alg_name"></div>
+              <div id="cl-seek"></div>
+              <div id="am_alg_seek"></div>
+              <canvas id="canvas" width=700 height=700></canvas>
+            </div>
+
+          </div>
+
+          <div id="grph" class="container2">
+            <div id="plt_alg_name"></div>
+            <div id="graph_area"></div>
+            <div id="plt_alg_seek"></div>
+            <div id="cal-seek"></div>
+          </div>
+
+
+          <div id="cmpr" class="container3">
+            <div id="cmpr-head"></div>
+            <div id="cmpr_area"></div>
+            
+          </div>
+
+        </div>
+        
+
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="myscript.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+          
+    </body>
+    
+</html>

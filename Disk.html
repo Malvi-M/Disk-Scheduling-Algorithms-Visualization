@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <title>Disk Scheduling Algorithms</title>
+    
+    <!--CSS and Script linking-->
+    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
+  </head>
+
+  <body>
+    <header>
+      <nav id="header-nav" class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+  
+            <div class="navbar-brand">
+              <a href="#"><h1>Disk Scheduling Algorithms</h1></a>
+            </div>
+  
+            <button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+  
+          <div id="collapsable-nav" class="collapse navbar-collapse">
+             <ul id="nav-list" class="nav navbar-nav navbar-right">
+              <li>
+                <a href="Disk.html">
+                  <i class="fa fa-file-text" aria-hidden="true"></i><br class="hidden-xs"> Wiki</a>
+              </li>
+              <li>
+                <a href="Simulate.html">
+                  <i class="fa fa-area-chart" aria-hidden="true"></i><br class="hidden-xs"> Simulate</a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i><br class="hidden-xs"> About</a>
+              </li>
+            </ul><!-- #nav-list -->
+          </div><!-- .collapse .navbar-collapse -->
+        </div><!-- .container -->
+      </nav><!-- #header-nav -->
+    </header>
+    
+    <div class="diskinfo">
+      <p class="hd">What are Disk Scheduling Algorithms?</p>
+      
+      <div id="intro">
+        <img id="diskimg" src="img1.png" alt="disk image">
+          A process needs two type of time, CPU time and IO time. For I/O, it requests the Operating system to access the disk.However, the operating system must be fare enough to satisfy each request and at the same time, operating system must maintain the efficiency and speed of process execution.The technique that operating system uses to determine the request which is to be satisfied next is called disk scheduling.Disk scheduling is done by operating systems to schedule I/O requests arriving for the disk. Disk scheduling is also known as I/O Scheduling.
+      </div>
+
+      <div id="terms">
+        <img id="diskimg2" src="img2.png" alt="disk image">
+        <span id="hd2">Some important terminologies :</span><br><br>
+        <b id="bold">Seek Time</b>
+        - <br>Seek time is the time taken in locating the disk arm to a specified track where the read/write request will be satisfied.<br>
+        <b id="bold">Rotational Latency</b> 
+        - <br>It is the time taken by the desired sector to rotate itself to the position from where it can access the R/W heads.<br>
+        <b id="bold">Transfer Time</b>
+        - <br> It is the time taken to transfer the data.<br>
+        <b id="bold"> Disk Access Time</b>
+        - <br>Disk access time is given as, <br>Disk Access Time = Rotational Latency + Seek Time + Transfer Time<br>
+        <b id="bold">Disk Response Time:</b> 
+        - <br>It is the average of time spent by each request waiting for the IO operation.
+      </div>
+
+      
+      <p class="hd">Why do we need Disk Scheduling Algorithms?</p>
+
+      <div id="why">
+        Disk scheduling is important because:
+        <ul>
+          <li>Multiple I/O requests may arrive by different processes and only one I/O request can be served at a time by the disk controller.Thus other I/O requests need to wait in the waiting queue and need to be scheduled.</li>
+          <li>Two or more request may be far from each other so can result in greater disk arm movement.</li>
+          <li>Hard drives are one of the slowest parts of the computer system and thus need to be accessed in an efficient manner.</li>
+        </ul>
+
+      </div>
+
+      <p class="hd">Various Disk Scheduling Algorithms</p>
+
+      <div class="cont">
+        <div>
+          <a id="algo" href="Simulate.html"><h2 class=" heady">First Come First Serve (FCFS)<br></h2><hr style="width: 30%; border-width: 2px;"></a><br>
+          <p class="description">FCFS is the simplest disk scheduling algorithm. As the name suggests, this algorithm entertains requests in the order they arrive in the disk queue. The algorithm looks very fair and there is no starvation (all requests are serviced sequentially) but generally, it does not provide the fastest service.</p>
+        </div>
+        <div>
+          <a id="algo" href="Simulate.html"><h2 class=" heady">Shortest Seek Time First (SSTF)<br></h2><hr style="width: 30%; border-width: 2px;"></a><br>
+          <p class="description">Shortest seek time first (SSTF) algorithm selects the disk I/O request which requires the least disk arm movement from its current position regardless of the direction. It reduces the total seek time as compared to FCFS. It allows the head to move to the closest track in the service queue.</p>
+        </div>
+        <div>
+          <a id="algo" href="Simulate.html"><h2 class=" heady">SCAN<br><br></h2><hr style="width: 30%; border-width: 2px;"></a><br>
+          <p class="description">In SCAN disk scheduling algorithm, head starts from one end of the disk and moves towards the other end, servicing requests in between one by one and reach the other end. Then the direction of the head is reversed and the process continues as head continuously scan back and forth to access the disk.</p>
+        </div>
+        <div>
+          <a id="algo" href="Simulate.html"><h2 class=" heady">Circular SCAN (C-SCAN)<br></h2><hr style="width: 30%; border-width: 2px;"></a><br>
+          <p class="description">Circular SCAN (C-SCAN) scheduling algorithm is a modified version of SCAN disk scheduling algorithm that deals with the inefficiency of SCAN algorithm by servicing the requests more uniformly. Like SCAN (Elevator Algorithm) C-SCAN moves the head from one end servicing all the requests to the other end.</p>
+        </div>
+        <div>
+          <a id="algo" href="Simulate.html"><h2 class=" heady">LOOK<br></h2><hr style="width: 30%; border-width: 2px;"></a><br>
+          <p class="description">The LOOK algorithm services request similarly as SCAN algorithm meanwhile it also “looks” ahead as if there are more tracks that are needed to be serviced in the same direction. If there are no pending requests in the moving direction the head reverses the direction and start servicing requests in the opposite direction. </p>
+        </div>
+        <div class=" heady">
+          <a id="algo" href="Simulate.html"><h2 class="heady">Circular LOOK<br></h2><hr style="width: 30%; border-width: 2px;"></a><br>
+          <p class="description">In this algorithm, the head services requests only in one direction until all the requests in this direction are not serviced and then jumps back to the farthest request on the other direction and service the remaining requests which gives a better uniform servicing as well as avoids wasting seek time for going till the end of the disk.</p>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="myscript.js"></script>
+
+  </body>
+
+</html>
