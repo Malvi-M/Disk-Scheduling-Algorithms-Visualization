@@ -3,7 +3,7 @@
 ### Languages : HTML5, CSS, JS <br>
 ### Tools     : Chrome DevTools <br>
 ### Libraries : Bootstrap, JQuery, Plotly<br>
-### Link : [Disk Sceduling Visualizer](https://malvi-m.github.io/Disk-Scheduling-Algorithms-Visualization/Disk.html)
+### Link : [Disk Scheduling Visualizer](https://malvi-m.github.io/Disk-Scheduling-Algorithms-Visualization/Disk.html)
 
 ## Main Features: <br>
 Information on Disk Scheduling Algorithms, it's need and types i.e. FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK <br>
